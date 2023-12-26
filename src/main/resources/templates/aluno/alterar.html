@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Fragmento de código que será substituído pelo conteúdo do fragmento "heads" -->
+    <div th:replace="fragments/heads :: heads"></div>
+
+    <title>Adicionar Aluno</title>
+    <style>
+        .mensagem {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Fragmento de código que será substituído pelo conteúdo do fragmento "cabecalho" -->
+    <div th:replace="fragments/header :: cabecalho"></div>
+    <div class="row">
+        <div class="col">
+
+            <!-- Mensagem carregada após a inserção dos dados-->
+            <div class="alert alert-success alert-dismissible fade show" th:if="${mensagem}">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <span th:text="${mensagem}"></span>
+            </div>
+
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Cadastro de <b>Alunos</b></h2>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="col-sm-12" style="text-align: right;">
+                                <a th:href="@{/aluno}" class="btn btn-primary"> Listagem <i class="fas fa-list"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Formulário de cadastro de alunos th:action="@{/aluno/salvar} recurso do Thymeleaf -->
+                <form action="#" th:action="@{/aluno/alterar/{id}(id=${aluno.id})}" th:object="${aluno}" method="post">
+
+                    <input type="hidden" th:field="${aluno.id}">
+
+
+                    <div class="card">
+                        <div class="card-header">
+                            Dados Pessoais
+                        </div>
+
+                        <div class="card-body">
+                            <div class="form-control form-control-sm">
+                                <label class="col-sm-12 col-form-label">Nome:</label>
+                                <div class="col-sm-12">
+
+                                    <!-- th:field="*{nome}" recurso do Thymeleaf. Carrega o atributo nome do objeto aluno -->
+                                    <input class="form-control" type="text" th:field="*{nome}">
+                                    <br>
+                                </div>
+                                <div class="col-sm-12">
+                                    <!-- Mensagem de erro caso o campo nome tenha algum erro de validação -->
+                                    <span class="mensagem" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-control form-control-sm">
+                                <label class="col-sm-12 col-form-label">CPF:</label>
+                                <div class="col-sm-12">
+
+                                    <!-- th:field="*{cpf}" recurso do Thymeleaf. Carrega o atributo nome do objeto aluno -->
+                                    <input class="form-control" type="text" th:field="*{cpf}">
+                                    <br>
+                                </div>
+                                <div class="col-sm-12">
+                                    <!-- Mensagem de erro caso o campo nome tenha algum erro de validação -->
+                                    <span class="mensagem" th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}"></span>
+                                </div>
+                            </div>
+
+
+                            <div class="form-control form-control-sm">
+                                <label class="col-sm-12 col-form-label">Matrícula:</label>
+                                <div class="col-sm-12">
+
+                                    <!-- th:field="*{matricula}" recurso do Thymeleaf. Carrega o atributo matricula do objeto aluno -->
+                                    <input class="form-control" type="text" th:field="*{matricula}">
+                                    <br>
+                                </div>
+                                <div class="col-sm-12">
+
+                                    <!-- Mensagem de erro caso o campo matricula tenha algum erro de validação -->
+                                    <span class="mensagem" th:if="${#fields.hasErrors('matricula')}"
+                                          th:errors="*{matricula}"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-control form-control-sm">
+                                <label class="col-sm-12 col-form-label">Foto:</label>
+                                <div class="col-sm-12">
+
+                                    <!-- th:field="*{email}" recurso do Thymeleaf. Carrega o atributo email do objeto aluno -->
+                                    <input class="form-control" type="text" th:field="*{foto}">
+                                    <br>
+                                </div>
+                                <div class="col-sm-12">
+
+                                    <!-- Mensagem de erro caso o campo email tenha algum erro de validação -->
+                                    <span class="mensagem" th:if="${#fields.hasErrors('email')}" th:errors="*{foto}"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-control form-control-sm">
+                                <label class="col-sm-12 col-form-label">Email:</label>
+                                <div class="col-sm-12">
+
+                                    <!-- th:field="*{email}" recurso do Thymeleaf. Carrega o atributo email do objeto aluno -->
+                                    <input class="form-control" type="text" th:field="*{email}">
+                                    <br>
+                                </div>
+                                <div class="col-sm-12">
+
+                                    <!-- Mensagem de erro caso o campo email tenha algum erro de validação -->
+                                    <span class="mensagem" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <br>
+
+
+                    <div class="card">
+                        <div class="card-header">
+                            Dados de Endereço
+                        </div>
+
+                        <div class="card-body">
+                            <div class="form-control form-control-sm">
+                                <label class="col-sm-12 col-form-label">Cep:</label>
+                                <div class="col-sm-12">
+
+                                    <!-- th:field="*{matricula}" recurso do Thymeleaf. Carrega o atributo matricula do objeto aluno -->
+                                    <input class="form-control" type="text" id="cep" th:field="*{enderecoPessoa.cep}">
+                                    <br>
+                                </div>
+                                <div class="col-sm-12">
+
+                                    <!-- Mensagem de erro caso o campo matricula tenha algum erro de validação -->
+                                    <span class="mensagem" th:if="${#fields.hasErrors('enderecoPessoa.cep')}"
+                                          th:errors="*{enderecoPessoa.cep}"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-control form-control-sm">
+                                <label class="col-sm-12 col-form-label">Logradouro:</label>
+                                <div class="col-sm-12">
+
+                                    <!-- th:field="*{matricula}" recurso do Thymeleaf. Carrega o atributo matricula do objeto aluno -->
+                                    <input class="form-control" type="text" id="rua" th:field="*{enderecoPessoa.logradouro}">
+                                    <br>
+                                </div>
+                                <div class="col-sm-12">
+
+                                    <!-- Mensagem de erro caso o campo matricula tenha algum erro de validação -->
+                                    <span class="mensagem" th:if="${#fields.hasErrors('enderecoPessoa.logradouro')}"
+                                          th:errors="*{enderecoPessoa.logradouro}"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-control form-control-sm">
+                                <label class="col-sm-12 col-form-label">Complemento:</label>
+                                <div class="col-sm-12">
+
+                                    <!-- th:field="*{matricula}" recurso do Thymeleaf. Carrega o atributo matricula do objeto aluno -->
+                                    <input class="form-control" type="text" th:field="*{enderecoPessoa.complemento}">
+                                    <br>
+                                </div>
+                                <div class="col-sm-12">
+
+                                    <!-- Mensagem de erro caso o campo matricula tenha algum erro de validação -->
+                                    <span class="mensagem" th:if="${#fields.hasErrors('enderecoPessoa.complemento')}"
+                                          th:errors="*{enderecoPessoa.complemento}"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-control form-control-sm">
+                                <label class="col-sm-12 col-form-label">Bairro:</label>
+                                <div class="col-sm-12">
+
+                                    <!-- th:field="*{matricula}" recurso do Thymeleaf. Carrega o atributo matricula do objeto aluno -->
+                                    <input class="form-control" type="text" id="bairro" th:field="*{enderecoPessoa.bairro}">
+                                    <br>
+                                </div>
+                                <div class="col-sm-12">
+
+                                    <!-- Mensagem de erro caso o campo matricula tenha algum erro de validação -->
+                                    <span class="mensagem" th:if="${#fields.hasErrors('enderecoPessoa.bairro')}"
+                                          th:errors="*{enderecoPessoa.bairro}"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-control form-control-sm">
+                                <label class="col-sm-12 col-form-label">Cidade:</label>
+                                <div class="col-sm-12">
+
+                                    <!-- th:field="*{matricula}" recurso do Thymeleaf. Carrega o atributo matricula do objeto aluno -->
+                                    <input class="form-control" type="text" id="cidade" th:field="*{enderecoPessoa.localidade}">
+                                    <br>
+                                </div>
+                                <div class="col-sm-12">
+
+                                    <!-- Mensagem de erro caso o campo matricula tenha algum erro de validação -->
+                                    <span class="mensagem" th:if="${#fields.hasErrors('enderecoPessoa.localidade')}"
+                                          th:errors="*{enderecoPessoa.localidade}"></span>
+                                </div>
+                            </div>
+                            <div class="form-control form-control-sm">
+                                <label class="col-sm-12 col-form-label">UF:</label>
+                                <div class="col-sm-12">
+
+                                    <!-- th:field="*{matricula}" recurso do Thymeleaf. Carrega o atributo matricula do objeto aluno -->
+                                    <input class="form-control" type="text" id="uf" th:field="*{enderecoPessoa.uf}">
+                                    <br>
+                                </div>
+                                <div class="col-sm-12">
+
+                                    <!-- Mensagem de erro caso o campo matricula tenha algum erro de validação -->
+                                    <span class="mensagem" th:if="${#fields.hasErrors('enderecoPessoa.uf')}"
+                                          th:errors="*{enderecoPessoa.uf}"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+
+
+
+
+
+
+                    <div class="card">
+                        <div class="card-header dynamic-update-rows">
+                            Telefones
+
+                            <button
+                                type="button"
+                                name="addContact"
+                                class="btn btn-sm btn-success float-right"
+                                data-dynamic-update-rows-url="/aluno/addTelefone"
+                            >
+                                <i class="fas fa-plus"></i>
+                            </button>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <table class="table dynamic-update-rows" style="width: 100%">
+                                <tbody id="dynamicTableContents">
+                                    <tr th:fragment="telefones"
+                                        th:each="telefone,rowStat : ${aluno.telefones}">
+                                        <td th:text="${rowStat.count}">1</td>
+                                        <td>
+                                            <input type="hidden" th:field="${aluno.telefones[__${rowStat.index}__].id}">
+                                            <select
+                                                class="form-control form-control-sm"
+                                                th:name="${aluno.telefones[__${rowStat.index}__].tipo}"
+                                                th:field="${aluno.telefones[__${rowStat.index}__].tipo}"
+                                            >
+                                                <option selected="selected" readonly value="">Selecione o tipo</option>
+                                                <option value="Pessoal">Pessoal</option>
+                                                <option value="Residencial">Residencial</option>
+                                                <option value="Responsavel">Responsável</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input
+                                                class="form-control form-control-sm"
+                                                type="text"
+                                                placeholder="DDI"
+                                                th:field="${aluno.telefones[__${rowStat.index}__].DDI}"
+                                            />
+                                        </td>
+                                        <td>
+                                            <input
+                                                class="form-control form-control-sm"
+                                                type="text"
+                                                placeholder="DDD"
+                                                th:field="${aluno.telefones[__${rowStat.index}__].DDD}"
+                                            />
+                                        </td>
+                                        <td>
+                                            <input
+                                                    class="form-control form-control-sm"
+                                                    type="text"
+                                                    placeholder="Número"
+                                                    th:field="${aluno.telefones[__${rowStat.index}__].numero}"
+                                            />
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button
+                                                    type="button"
+                                                    name="removeDynamicRow"
+                                                    th:value="${rowStat.index}"
+                                                    class="btn btn-sm btn-danger"
+                                                    data-dynamic-update-rows-url="/aluno/removeTelefone"
+                                                >
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                    <br/>
+
+                    <div class="card">
+                        <div class="card-header dynamic-update-rows-turma">
+                            Turmas
+
+                            <button type="button" name="addTurma"
+                                    class="btn btn-sm btn-success float-right"
+                                    data-dynamic-update-rows-url-turma="/aluno/addTurma">
+                                <i class="fas fa-plus"></i>
+                            </button>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <table class="table dynamic-update-rows-turma" style="width: 100%">
+                                <tbody id="dynamicTableContentsTurma">
+                                <tr th:fragment="turmas"
+                                    th:each="turma,rowStat : ${aluno.turmas}">
+                                    <td th:text="${rowStat.count}">1</td>
+                                    <td>
+
+                                        <!-- Dropdown de turmas  que funcione no javascript-->
+                                        <select class="form-control form-control-sm"
+                                                th:name="${aluno.turmas[__${rowStat.index}__].curso}"
+                                                th:onchange="atualizarIdTurma([[${rowStat.index}]],this)"
+                                        >
+                                            <option th:selected="${turma.id == null}" readonly value="">Selecione a turma</option>
+
+                                            <option th:each="turma : ${aluno.turmas}"
+                                                    th:value="${turma.id}"
+                                                    th:selected="${turma.id == aluno.turmas[__${rowStat.index}__].id}"
+                                                    th:text="${turma.curso}"
+                                            >
+                                            </option>
+                                        </select>
+                                        <input type="hidden" th:field="${aluno.turmas[__${rowStat.index}__].id}">
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" name="removeDynamicRowTurma"
+                                                    th:value="${rowStat.index}" class="btn btn-sm btn-danger"
+                                                    data-dynamic-update-rows-url-turma="/aluno/removeTurma">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                    <br/>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button class="btn btn-success" type="submit"> Salvar <i class="fas fa-save"></i></button>
+                        </div>
+                        <div class="col-sm-6" style="text-align: right;">
+                            <a th:href="@{/aluno}" class="btn btn-primary"> Listagem <i class="fas fa-save"></i></a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+        <!-- Fragmento de código que será substituído pelo conteúdo do fragmento "footer" -->
+        <div th:replace="fragments/footer :: footer">
+        </div>
+
+
+    </div>
+</div>
+</body>
+</html>

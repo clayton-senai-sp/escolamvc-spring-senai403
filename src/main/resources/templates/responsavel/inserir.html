@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Fragmento de código que será substituído pelo conteúdo do fragmento "heads" -->
+    <div th:replace="fragments/heads :: heads"></div>
+
+    <title>Adicionar Responsável</title>
+    <style>
+        .mensagem {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Fragmento de código que será substituído pelo conteúdo do fragmento "cabecalho" -->
+    <div th:replace="fragments/header :: cabecalho"></div>
+    <div class="row">
+        <div class="col">
+
+            <h2>Cadastro de Responsável</h2>
+
+            <!-- Mensagem carregada após a inserção dos dados-->
+            <div class="alert alert-success alert-dismissible fade show" th:if="${mensagem}">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <span th:text="${mensagem}"></span>
+            </div>
+
+            <!-- Formulário de cadastro de alunos th:action="@{/aluno/salvar} recurso do Thymeleaf -->
+            <form th:action="@{/responsavel/salvar}" th:object="${responsavel}" method="post">
+
+
+                <div class="row mb-12">
+                    <label class="col-sm-12 col-form-label">Nome:</label>
+                    <div class="col-sm-12">
+
+                        <!-- th:field="*{nome}" recurso do Thymeleaf. Carrega o atributo nome do objeto aluno -->
+                        <input class="form-control" type="text" th:field="*{nome}">
+                    </div>
+                    <div class="col-sm-12">
+                        <!-- Mensagem de erro caso o campo nome tenha algum erro de validação -->
+                        <span class="mensagem" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+                    </div>
+                </div>
+
+
+                <div class="row mb-12">
+                    <label class="col-sm-12 col-form-label">CPF:</label>
+                    <div class="col-sm-12">
+
+                        <!-- th:field="*{cpf}" recurso do Thymeleaf. Carrega o atributo nome do objeto aluno -->
+                        <input class="form-control" type="text" th:field="*{cpf}">
+                    </div>
+                    <div class="col-sm-12">
+                        <!-- Mensagem de erro caso o campo nome tenha algum erro de validação -->
+                        <span class="mensagem" th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-12">
+                    <label class="col-sm-12 col-form-label">Email:</label>
+                    <div class="col-sm-12">
+
+                        <!-- th:field="*{email}" recurso do Thymeleaf. Carrega o atributo email do objeto aluno -->
+                        <input class="form-control" type="text" th:field="*{email}">
+                    </div>
+                    <div class="col-sm-12">
+
+                        <!-- Mensagem de erro caso o campo email tenha algum erro de validação -->
+                        <span class="mensagem" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                    </div>
+                </div>
+
+
+                <div class="row mb-12">
+                    <label class="col-sm-12 col-form-label">Cep:</label>
+                    <div class="col-sm-12">
+
+                        <!-- th:field="*{matricula}" recurso do Thymeleaf. Carrega o atributo matricula do objeto aluno -->
+                        <input class="form-control" type="text" id="cep" th:field="*{enderecoPessoa.cep}">
+                    </div>
+                    <div class="col-sm-12">
+
+                        <!-- Mensagem de erro caso o campo matricula tenha algum erro de validação -->
+                        <span class="mensagem" th:if="${#fields.hasErrors('enderecoPessoa.cep')}" th:errors="*{enderecoPessoa.cep}"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-12">
+                    <label class="col-sm-12 col-form-label">Logradouro:</label>
+                    <div class="col-sm-12">
+
+                        <!-- th:field="*{matricula}" recurso do Thymeleaf. Carrega o atributo matricula do objeto aluno -->
+                        <input class="form-control" type="text" id="rua" th:field="*{enderecoPessoa.logradouro}">
+                    </div>
+                    <div class="col-sm-12">
+
+                        <!-- Mensagem de erro caso o campo matricula tenha algum erro de validação -->
+                        <span class="mensagem" th:if="${#fields.hasErrors('enderecoPessoa.logradouro')}" th:errors="*{enderecoPessoa.logradouro}"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-12">
+                    <label class="col-sm-12 col-form-label">Complemento:</label>
+                    <div class="col-sm-12">
+
+                        <!-- th:field="*{matricula}" recurso do Thymeleaf. Carrega o atributo matricula do objeto aluno -->
+                        <input class="form-control" type="text" th:field="*{enderecoPessoa.complemento}">
+                    </div>
+                    <div class="col-sm-12">
+
+                        <!-- Mensagem de erro caso o campo matricula tenha algum erro de validação -->
+                        <span class="mensagem" th:if="${#fields.hasErrors('enderecoPessoa.complemento')}" th:errors="*{enderecoPessoa.complemento}"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-12">
+                    <label class="col-sm-12 col-form-label">Bairro:</label>
+                    <div class="col-sm-12">
+
+                        <!-- th:field="*{matricula}" recurso do Thymeleaf. Carrega o atributo matricula do objeto aluno -->
+                        <input class="form-control" type="text" id="bairro" th:field="*{enderecoPessoa.bairro}">
+                    </div>
+                    <div class="col-sm-12">
+
+                        <!-- Mensagem de erro caso o campo matricula tenha algum erro de validação -->
+                        <span class="mensagem" th:if="${#fields.hasErrors('enderecoPessoa.bairro')}" th:errors="*{enderecoPessoa.bairro}"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-12">
+                    <label class="col-sm-12 col-form-label">Cidade:</label>
+                    <div class="col-sm-12">
+
+                        <!-- th:field="*{matricula}" recurso do Thymeleaf. Carrega o atributo matricula do objeto aluno -->
+                        <input class="form-control" type="text" id="cidade" th:field="*{enderecoPessoa.localidade}">
+                    </div>
+                    <div class="col-sm-12">
+
+                        <!-- Mensagem de erro caso o campo matricula tenha algum erro de validação -->
+                        <span class="mensagem" th:if="${#fields.hasErrors('enderecoPessoa.localidade')}" th:errors="*{enderecoPessoa.localidade}"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-12">
+                    <label class="col-sm-12 col-form-label">UF:</label>
+                    <div class="col-sm-12">
+
+                        <!-- th:field="*{matricula}" recurso do Thymeleaf. Carrega o atributo matricula do objeto aluno -->
+                        <input class="form-control" type="text" id="uf" th:field="*{enderecoPessoa.uf}">
+                    </div>
+                    <div class="col-sm-12">
+
+                        <!-- Mensagem de erro caso o campo matricula tenha algum erro de validação -->
+                        <span class="mensagem" th:if="${#fields.hasErrors('enderecoPessoa.uf')}" th:errors="*{enderecoPessoa.uf}"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-12">
+                    <label class="col-sm-12 col-form-label">Etnia:</label>
+                    <div class="col-sm-12">
+
+                        <!-- dropdown de etnias-->
+                        <select name="etnia" class="col-sm-12">
+                            <option value="">Selecione</option>
+                            <option
+                                    th:each="etnia : ${T(br.senai.sp.escolamvc.enums.Etnia).values()}"
+                                    th:value="${etnia}"
+                                    th:text="${etnia.descricao}">
+
+                            </option>
+                        </select>
+
+                    </div>
+                    <div class="col-sm-12">
+
+                        <!-- Mensagem de erro caso o campo email tenha algum erro de validação -->
+                        <span class="mensagem" th:if="${#fields.hasErrors('etnia')}" th:errors="*{etnia}"></span>
+                    </div>
+                </div>
+
+
+
+                <div class="row mb-12">
+                    <label class="col-sm-12 col-form-label">Sexo:</label>
+                    <div class="col-sm-12">
+
+                        <!-- dropdown de etnias-->
+                        <select name="sexo" class="col-sm-12">
+                            <option value="">Selecione</option>
+                            <option
+                                    th:each="sexo : ${T(br.senai.sp.escolamvc.enums.Sexo).values()}"
+                                    th:value="${sexo}"
+                                    th:text="${sexo.descricao}">
+
+                            </option>
+                        </select>
+
+                    </div>
+                    <div class="col-sm-12">
+
+                        <!-- Mensagem de erro caso o campo email tenha algum erro de validação -->
+                        <span class="mensagem" th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}"></span>
+                    </div>
+                </div>
+
+
+
+                <div class="row mb-12">
+                    <label class="col-sm-12 col-form-label">Estado Civil:</label>
+                    <div class="col-sm-12">
+
+                        <!-- dropdown de etnias-->
+                        <select name="estadoCivil" class="col-sm-12">
+                            <option value="">Selecione</option>
+                            <option
+                                    th:each="estadoCivil : ${T(br.senai.sp.escolamvc.enums.EstadoCivil).values()}"
+                                    th:value="${estadoCivil}"
+                                    th:text="${estadoCivil.descricao}">
+
+                            </option>
+                        </select>
+
+                    </div>
+                    <div class="col-sm-12">
+
+                        <!-- Mensagem de erro caso o campo email tenha algum erro de validação -->
+                        <span class="mensagem" th:if="${#fields.hasErrors('estadoCivil')}" th:errors="*{estadoCivil}"></span>
+                    </div>
+                </div>
+
+
+                <br />
+
+
+                <button  class="btn btn-primary" type="submit"> Salvar <i class="fas fa-save"></i></button>
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Fragmento de código que será substituído pelo conteúdo do fragmento "footer" -->
+    <div th:replace="fragments/footer :: footer">
+</div>
+</body>
+</html>

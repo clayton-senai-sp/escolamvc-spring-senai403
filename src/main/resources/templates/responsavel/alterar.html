@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!-- faz a chamada do Thymeleaf -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <!-- faz a chamada do fragmento "heads" -->
+    <div th:replace="fragments/heads :: heads"></div>
+    <meta charset="UTF-8">
+    <title>Alteração de Responsável</title>
+</head>
+<body>
+<!-- div container bootstrap -->
+<div class="container">
+
+    <!-- faz a chamada do fragmento "cabecalho" -->
+    <div th:replace="fragments/header :: cabecalho"></div>
+
+    <!-- div row -->
+    <div class="row">
+        <!-- div col -->
+        <div class="col">
+            <!-- Mensagem carregada após a inserção dos dados-->
+            <div class="alert alert-success alert-dismissible fade show" th:if="${mensagem}">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <span th:text="${mensagem}"></span>
+            </div>
+
+            <!-- Formulário de alteração de Responsável th:action="@{/responsavel/alterar/{id}(id=${responsavel.id})} recurso do Thymeleaf -->
+            <form th:action="@{/responsavel/alterar/{id}(id=${responsavel.id})}" th:object="${responsavel}" method="post">
+
+                <!-- Campo oculto para armazenar o id do responsável -->
+                <input type="hidden" th:field="*{id}" />
+
+                <div class="row mb-12">
+                    <label class="col-sm-12 col-form-label">Nome:</label>
+                    <div class="col-sm-12">
+
+                        <!-- th:field="*{nome}" recurso do Thymeleaf. Carrega o atributo nome do objeto aluno -->
+                        <input class="form-control" type="text" th:field="*{nome}">
+                    </div>
+                    <div class="col-sm-12">
+                        <!-- Mensagem de erro caso o campo nome tenha algum erro de validação -->
+                        <span class="mensagem" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-12">
+                    <label class="col-sm-12 col-form-label">E-mail:</label>
+                    <div class="col-sm-12">
+                        <!-- th:field="*{email}" recurso do Thymeleaf. Carrega o atributo email do objeto aluno -->
+                        <input class="form-control" type="text" th:field="*{email}">
+                    </div>
+                    <div class="col-sm-12">
+                        <!-- Mensagem de erro caso o campo email tenha algum erro de validação -->
+                        <span class="mensagem" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-12">
+                    <label class="col-sm-12 col-form-label">CPF:</label>
+                    <div class="col-sm-12">
+                        <!-- th:field="*{telefone}" recurso do Thymeleaf. Carrega o atributo telefone do objeto aluno -->
+                        <input class="form-control" type="text" th:field="*{cpf}">
+                    </div>
+                    <div class="col-sm-12">
+                        <!-- Mensagem de erro caso o campo telefone tenha algum erro de validação -->
+                        <span class="mensagem" th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}"></span>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- faz a chamada do fragmento "rodape" -->
+    <div th:replace="fragments/footer :: footer">
+</div>
+
+
+
+
+
+
+</body>
+</html>
