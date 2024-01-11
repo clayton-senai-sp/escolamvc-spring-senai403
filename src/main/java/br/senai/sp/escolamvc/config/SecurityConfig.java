@@ -30,15 +30,15 @@ public class SecurityConfig {
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring()
-                //.requestMatchers(new AntPathRequestMatcher("/h2-console/**"))
-                //.requestMatchers(new AntPathRequestMatcher("/bootstrap5-3-2/**"))
+                //.requestMatchers(new AntPathRequestMatcher("/aluno/**"))
+                .requestMatchers(new AntPathRequestMatcher("/h2-console/**"))
+                .requestMatchers(new AntPathRequestMatcher("/bootstrap5-3-2/**"))
                 .requestMatchers(new AntPathRequestMatcher("/css/**"))
-                //.requestMatchers(new AntPathRequestMatcher("/fontawesome-free-6.4.2-web/**"))
+                .requestMatchers(new AntPathRequestMatcher("/fontawesome-free-6.4.2-web/**"))
                 .requestMatchers(new AntPathRequestMatcher("/img/**"))
-                //.requestMatchers(new AntPathRequestMatcher("/jquery/**"))
-                //.requestMatchers(new AntPathRequestMatcher("/jquery-mask/**"))
-                .requestMatchers(new AntPathRequestMatcher("/js/**"))
-                .requestMatchers(new AntPathRequestMatcher("/aluno/**"));
+                .requestMatchers(new AntPathRequestMatcher("/jquery/**"))
+                .requestMatchers(new AntPathRequestMatcher("/jquery-mask/**"))
+                .requestMatchers(new AntPathRequestMatcher("/js/**"));
 
     }
 
@@ -50,7 +50,7 @@ public class SecurityConfig {
         .authorizeHttpRequests((requests) -> requests
                 .requestMatchers(new AntPathRequestMatcher("/login/**")).permitAll()
                 //.requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
-                .requestMatchers(new AntPathRequestMatcher("/aluno/**")).hasAuthority("ROLE_USER")
+                //.requestMatchers(new AntPathRequestMatcher("/aluno/**")).hasAuthority("ROLE_USER")
                 .anyRequest().authenticated()
         )
         .userDetailsService(userService)

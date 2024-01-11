@@ -8,15 +8,10 @@
     </a>
 
     <ul class="nav nav-pills" style="font-size: medium; margin-top: 5px;">
-        <li class="nav-item"><a href="#" class="nav-link">Home <i class="fas fa-home"></i></a></li>
+        <li class="nav-item"><a th:href="@{/}" class="nav-link">Home <i class="fas fa-home"></i></a></li>
         <li class="nav-item"><a th:href="@{/aluno}" class="nav-link">Alunos <i class="fas fa-users"></i></a></li>
         <li class="nav-item"><a th:href="@{/professor}" class="nav-link">Professores <i class="fas fa-person-booth"></i></a></li>
-        <li class="nav-item">
-            <a th:href="@{/turma}" class="nav-link">
-                Turma
-                <i class="fas fa-school"></i>
-            </a>
-        </li>
+        <li class="nav-item"><a th:href="@{/turma}" class="nav-link">Turmas <i class="fas fa-school"></i></a></li>
 
     </ul>
 </header>
